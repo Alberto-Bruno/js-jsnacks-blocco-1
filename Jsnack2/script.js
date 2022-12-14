@@ -6,13 +6,13 @@ console.log('JS OK')
 */
 
 // creo la lista dei nomi autorizzate
-const allowedName = [
+const guests = [
     'name0',
     'name1',
     'name2',
     'name3',
     'name4',
-    'name5',
+    'name5'
 ];
 
 // prendo gli elementi dalla pagina
@@ -28,21 +28,22 @@ button.addEventListener('click', function () {
 
     // Validazione
     if (!userName) {
-        result.classList.add('text-danger');
-        result.innerText = 'Non trovo il nome in lista';
+        alert('Devi inserire il nome');
         return;
     }
 
-    let isAllowed = false;
+    let isInvited = false;
 
     // Controlliamo se la mail inserita è tra quelle autorizate
-    for (let i = 0; i < allowedName.length; i++) {
-        const currentName = allowedName[i];
-        console.log(currentName);
-        if (currentName === userName) {
-            isAllowed = true;
+    for (let i = 0; !isInvited && i < guests.length; i++) {
+        if (userName === guests[i]) {
+            isInvited = true;
         }
     }
-        // TERNARIO... Nome costante = condizione ? se true : se False;
-    result.innerText = isAllowed ? 'Benvenuto' : 'Spiacente, non puoi partecipare';
+    
+    // TERNARIO... Nome costante = condizione ? se true : se False;
+    const message = isInvited ? 'Benvenuto' : 'Spiacente, non puoi partecipare';
+
+    // Stampo in pagina
+    result.innerText = message;
 });
